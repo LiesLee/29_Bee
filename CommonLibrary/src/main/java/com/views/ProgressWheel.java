@@ -15,7 +15,7 @@ import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.View;
 
-import com.gun0912.tedpicker.R;
+import com.common.base.R;
 
 
 /**

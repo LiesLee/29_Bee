@@ -3,7 +3,7 @@ package com.common.utils;
 import android.os.SystemClock;
 import android.util.Log;
 
-import com.gun0912.tedpicker.BuildConfig;
+import com.common.base.BuildConfig;
 
 
 /**

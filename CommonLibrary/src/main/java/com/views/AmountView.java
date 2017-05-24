@@ -13,7 +13,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
-import com.gun0912.tedpicker.R;
+import com.common.base.R;
+
 
 /**
  * 自定义组件：购买数量，带减少增加按钮

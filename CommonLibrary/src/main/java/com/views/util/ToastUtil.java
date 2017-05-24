@@ -10,7 +10,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.gun0912.tedpicker.R;
+import com.common.base.R;
+
 
 /**
  * Created by LiesLee on 16/8/31.

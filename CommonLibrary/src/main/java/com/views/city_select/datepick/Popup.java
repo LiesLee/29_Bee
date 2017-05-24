@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.FrameLayout;
 
-import com.gun0912.tedpicker.R;
+import com.common.base.R;
 
 
 /**

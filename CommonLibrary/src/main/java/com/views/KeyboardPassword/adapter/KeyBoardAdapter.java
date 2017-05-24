@@ -11,7 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
-import com.gun0912.tedpicker.R;
+import com.common.base.R;
 
 import java.util.ArrayList;
 import java.util.Map;

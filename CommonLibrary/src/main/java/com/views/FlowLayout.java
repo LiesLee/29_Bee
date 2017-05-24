@@ -6,7 +6,8 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.gun0912.tedpicker.R;
+
+import com.common.base.R;
 
 import java.util.ArrayList;
 import java.util.List;

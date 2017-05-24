@@ -16,7 +16,8 @@ import android.view.WindowManager;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
-import com.gun0912.tedpicker.R;
+
+import com.common.base.R;
 import com.socks.library.KLog;
 
 import java.util.List;

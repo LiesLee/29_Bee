@@ -7,7 +7,8 @@ import android.view.ViewGroup;
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
-import com.gun0912.tedpicker.R;
+
+import com.common.base.R;
 import com.views.ViewsHelper;
 
 import java.util.ArrayList;

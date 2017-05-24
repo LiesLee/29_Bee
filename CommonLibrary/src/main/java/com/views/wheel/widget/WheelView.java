@@ -34,7 +34,7 @@ import android.view.animation.Interpolator;
 import android.widget.LinearLayout;
 
 
-import com.gun0912.tedpicker.R;
+import com.common.base.R;
 import com.views.wheel.adapters.WheelViewAdapter;
 
 import java.util.LinkedList;

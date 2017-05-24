@@ -22,7 +22,8 @@ import android.widget.RelativeLayout;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.gun0912.tedpicker.R;
+import com.common.base.R;
+
 
 import java.util.ArrayList;
 

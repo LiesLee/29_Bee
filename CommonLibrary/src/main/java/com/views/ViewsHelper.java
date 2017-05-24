@@ -15,8 +15,9 @@ import android.widget.TextView;
 
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.common.base.R;
 import com.common.base.ui.BaseActivity;
-import com.gun0912.tedpicker.R;
+
 import com.views.util.ViewUtil;
 
 import in.srain.cube.views.ptr.PtrFrameLayout;

@@ -3,7 +3,7 @@ package com.views.util;
 import android.content.Context;
 import android.view.View;
 
-import com.gun0912.tedpicker.R;
+
 import com.views.ViewsHelper;
 
 import in.srain.cube.views.ptr.PtrDefaultHandler;

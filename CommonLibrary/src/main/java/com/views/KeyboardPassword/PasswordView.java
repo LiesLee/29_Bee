@@ -13,7 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.gun0912.tedpicker.R;
+import com.common.base.R;
 
 
 /**

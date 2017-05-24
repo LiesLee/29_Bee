@@ -17,7 +17,7 @@ import android.net.Uri;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
-import com.gun0912.tedpicker.R;
+import com.common.base.R;
 
 
 public class CircleImageView extends ImageView {  // 圆头像
