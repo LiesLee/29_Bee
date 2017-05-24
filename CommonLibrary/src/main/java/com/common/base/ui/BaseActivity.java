@@ -33,7 +33,6 @@ import com.gun0912.tedpicker.R;
 import com.umeng.analytics.MobclickAgent;
 import com.views.ProgressWheel;
 import com.views.ViewsHelper;
-import com.views.catloadinglibrary.CatLoadingView;
 import com.views.util.ToastUtil;
 import com.views.util.ViewUtil;
 
