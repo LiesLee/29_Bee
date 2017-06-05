@@ -72,6 +72,8 @@
     <color name="counp_out">#CCCCCC</color>
     <color name="legacy_primary">#6d1818</color>
     <color name="legacy_primary_dark">#1ef8c807</color>
+    <color name="bee_brown">#be6b4c</color>
+    <color name="bee_circle">#f14a1c</color>
 
 
 </resources>
