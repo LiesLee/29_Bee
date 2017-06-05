@@ -9,9 +9,9 @@
 
     <com.views.NonSwipeableViewPager
         android:id="@+id/vp_main"
-        android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="0dp"/>
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
 
     <View
         android:background="@color/line_color"
@@ -21,7 +21,7 @@
     <RadioGroup
         android:id="@+id/rg_main"
         android:layout_width="match_parent"
-        android:layout_height="49dp"
+        android:layout_height="50dp"
         android:background="@color/white"
         android:orientation="horizontal">
 
@@ -32,7 +32,7 @@
             android:layout_weight="1"
             android:button="@null"
             android:checked="true"
-            android:drawablePadding="4dp"
+            android:drawableTop="@drawable/sele_rb_home"
             android:padding="5dp"
             android:gravity="center"
             android:text="首页"
@@ -47,7 +47,7 @@
             android:button="@null"
             android:text="今日拜访"
             android:textSize="10dp"
-            android:drawablePadding="4dp"
+            android:drawableTop="@drawable/sele_rb_bee"
             android:checked="false"
             android:textColor="@color/selector_home_tap_text"
             android:padding="5dp"
@@ -59,8 +59,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:button="@null"
+            android:drawableTop="@drawable/sele_rb_my"
             android:textSize="10dp"
-            android:drawablePadding="4dp"
             android:textColor="@color/selector_home_tap_text"
             android:padding="5dp"
             android:gravity="center"

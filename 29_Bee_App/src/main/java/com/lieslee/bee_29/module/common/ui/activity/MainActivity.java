@@ -1,5 +1,6 @@
 package com.lieslee.bee_29.module.common.ui.activity;
 
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -20,6 +21,7 @@ import com.lieslee.bee_29.module.labour.ui.LabourFragment;
 import com.lieslee.bee_29.module.my.ui.MyFragment;
 import com.views.NonSwipeableViewPager;
 import com.views.util.ToastUtil;
+import com.views.util.ViewUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,6 +60,19 @@ public class MainActivity extends BaseActivity<MainActivityPresenter> implements
 
     @Override
     protected void initView() {
+        int bounds = ViewUtil.dp2px(baseActivity, 18);
+        Drawable main_drawalbe = getResources().getDrawable(R.drawable.sele_rb_home);
+        main_drawalbe.setBounds(0,0,bounds,bounds);
+        rb_home.setCompoundDrawables(null,main_drawalbe,null,null);
+
+        Drawable bee_drawalbe = getResources().getDrawable(R.drawable.sele_rb_bee);
+        bee_drawalbe.setBounds(0,0,bounds,bounds);
+        rb_find.setCompoundDrawables(null,bee_drawalbe,null,null);
+
+        Drawable my_drawalbe = getResources().getDrawable(R.drawable.sele_rb_my);
+        my_drawalbe.setBounds(0,0,bounds,bounds);
+        rb_person.setCompoundDrawables(null,my_drawalbe,null,null);
+
         fragments = new ArrayList<>();
 
         mainFragment = new MainFragment();
