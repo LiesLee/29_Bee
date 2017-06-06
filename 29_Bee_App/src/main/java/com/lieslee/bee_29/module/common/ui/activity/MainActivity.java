@@ -132,7 +132,20 @@ public class MainActivity extends BaseActivity<MainActivityPresenter> implements
 
     public void seleteFragment(int index){
         if(vp_main!=null && fragmentAdapter!=null){
-            vp_main.setCurrentItem(index);
+
+            switch (index) {
+                case 1 :
+                    rg_main.check(R.id.rb_find);
+                    break;
+                case 2 :
+                    rg_main.check(R.id.rb_person);
+                    break;
+
+                default:
+                    rg_main.check(R.id.rb_home);
+                    break;
+            }
+
         }
     }
 
