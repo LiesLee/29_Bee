@@ -78,7 +78,7 @@ public class RefreshUtil {
      * @param ptrFrameLayout
      * @param refreshListener
      */
-    public static void init_material_pull(Context context, PtrFrameLayout ptrFrameLayout , final PtrRefreshListener refreshListener){
+    public static void  init_material_pull(Context context, PtrFrameLayout ptrFrameLayout , final PtrRefreshListener refreshListener){
         ViewsHelper.init_PTR_Material_params(context, ptrFrameLayout);
         ptrFrameLayout.setPtrHandler(new PtrHandler() {
             @Override

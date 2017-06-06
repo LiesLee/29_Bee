@@ -1,8 +1,6 @@
 package com.lieslee.bee_29.module.common.ui.activity;
 
 import android.graphics.drawable.Drawable;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.RadioButton;
@@ -17,7 +15,7 @@ import com.lieslee.bee_29.R;
 import com.lieslee.bee_29.module.common.persenter.MainActivityPresenter;
 import com.lieslee.bee_29.module.common.ui.adapter.MainFragmentAdapter;
 import com.lieslee.bee_29.module.home.ui.MainFragment;
-import com.lieslee.bee_29.module.labour.ui.LabourFragment;
+import com.lieslee.bee_29.module.labour.ui.fragment.BeeFragment;
 import com.lieslee.bee_29.module.my.ui.MyFragment;
 import com.views.NonSwipeableViewPager;
 import com.views.util.ToastUtil;
@@ -49,7 +47,7 @@ public class MainActivity extends BaseActivity<MainActivityPresenter> implements
     MainFragmentAdapter fragmentAdapter;
 
     MainFragment mainFragment;
-    LabourFragment labourFragment;
+    BeeFragment beeFragment;
     MyFragment myFragment;
 
     /**
@@ -76,11 +74,11 @@ public class MainActivity extends BaseActivity<MainActivityPresenter> implements
         fragments = new ArrayList<>();
 
         mainFragment = new MainFragment();
-        labourFragment = new LabourFragment();
+        beeFragment = new BeeFragment();
         myFragment = new MyFragment();
 
         fragments.add(mainFragment);
-        fragments.add(labourFragment);
+        fragments.add(beeFragment);
         fragments.add(myFragment);
 
         fragmentAdapter = new MainFragmentAdapter(getSupportFragmentManager(), fragments);
