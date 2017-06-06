@@ -14,7 +14,7 @@ import com.common.base.ui.BaseView;
 import com.lieslee.bee_29.R;
 import com.lieslee.bee_29.module.common.persenter.MainActivityPresenter;
 import com.lieslee.bee_29.module.common.ui.adapter.MainFragmentAdapter;
-import com.lieslee.bee_29.module.home.ui.MainFragment;
+import com.lieslee.bee_29.module.home.ui.fragment.MainFragment;
 import com.lieslee.bee_29.module.labour.ui.fragment.BeeFragment;
 import com.lieslee.bee_29.module.my.ui.MyFragment;
 import com.views.NonSwipeableViewPager;
@@ -128,6 +128,12 @@ public class MainActivity extends BaseActivity<MainActivityPresenter> implements
             return true;
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    public void seleteFragment(int index){
+        if(vp_main!=null && fragmentAdapter!=null){
+            vp_main.setCurrentItem(index);
+        }
     }
 
 }

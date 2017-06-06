@@ -18,7 +18,7 @@
     <color name="text_depth_black">#333333</color>
     <color name="toolbar_color_defalt">#1f97f1</color>
     <color name="text_color_defalt">#ffffff</color>
-    <color name="golden">#f29b1f</color>
+    <color name="golden">#d3a443</color>
 
     <color name="bg_drawlayout">#6b6a6a</color>
     <!-- 全局灰色主背景 -->
@@ -74,6 +74,7 @@
     <color name="legacy_primary_dark">#1ef8c807</color>
     <color name="bee_brown">#be6b4c</color>
     <color name="bee_circle">#f14a1c</color>
+    <color name="bee_or">#ed4b12</color>
 
 
 </resources>
