@@ -1,5 +1,6 @@
 package com.lieslee.bee_29.module.my.ui;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -8,6 +9,7 @@ import com.common.base.presenter.BasePresenterImpl;
 import com.common.base.ui.BaseFragment;
 import com.common.base.ui.BaseView;
 import com.lieslee.bee_29.R;
+import com.lieslee.bee_29.module.common.ui.activity.LoginActivity;
 
 import butterknife.Bind;
 
@@ -62,7 +64,8 @@ public class MyFragment extends BaseFragment<BasePresenterImpl> implements BaseV
                 break;
 
             case R.id.ll_exit :
-
+                Intent intentExit = new Intent(baseActivity, LoginActivity.class);
+                startActivity(intentExit);
                 break;
 
             default:

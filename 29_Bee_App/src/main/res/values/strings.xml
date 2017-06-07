@@ -11,4 +11,6 @@
     <string name="add_bank_card">银行卡信息</string>
     <string name="bank_card">银行卡</string>
     <string name="question">常见问题</string>
+    <string name="fetch_again">重新获取(%1$d秒)</string>
+    <string name="regist">注册</string>
 </resources>
