@@ -68,6 +68,8 @@ public class LoginActivity extends BaseActivity implements BaseView {
                 break;
 
             case R.id.tv_forget_pass:
+                Intent intentFoget = new Intent(baseActivity, ForgotPasswordActivity.class);
+                startActivity(intentFoget);
                 break;
         }
     }

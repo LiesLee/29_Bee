@@ -57,6 +57,8 @@
         <activity android:name=".module.home.ui.activity.QuestionActivity" android:screenOrientation="portrait"/>
         <activity android:name=".module.common.ui.activity.LoginActivity" android:screenOrientation="portrait"/>
         <activity android:name=".module.common.ui.activity.RegistActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".module.common.ui.activity.ForgotPasswordActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".module.common.ui.activity.ModifyPayPasswordActivity" android:screenOrientation="portrait"/>
 
 
         <!--======================================== 微信支付====================================================-->

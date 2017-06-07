@@ -9,7 +9,9 @@ import com.common.base.presenter.BasePresenterImpl;
 import com.common.base.ui.BaseFragment;
 import com.common.base.ui.BaseView;
 import com.lieslee.bee_29.R;
+import com.lieslee.bee_29.module.common.ui.activity.ForgotPasswordActivity;
 import com.lieslee.bee_29.module.common.ui.activity.LoginActivity;
+import com.lieslee.bee_29.module.common.ui.activity.ModifyPayPasswordActivity;
 
 import butterknife.Bind;
 
@@ -48,11 +50,13 @@ public class MyFragment extends BaseFragment<BasePresenterImpl> implements BaseV
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.ll_modify_password :
-
+                Intent intentFoget = new Intent(baseActivity, ForgotPasswordActivity.class);
+                intentFoget.putExtra("type",1);
+                startActivity(intentFoget);
                 break;
 
             case R.id.ll_modify_pay_password :
-
+                startActivity(new Intent(baseActivity, ModifyPayPasswordActivity.class));
                 break;
 
             case R.id.ll_about :

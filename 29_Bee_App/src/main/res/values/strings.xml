@@ -13,4 +13,6 @@
     <string name="question">常见问题</string>
     <string name="fetch_again">重新获取(%1$d秒)</string>
     <string name="regist">注册</string>
+    <string name="forgot_password">忘记密码</string>
+    <string name="pay_password">修改支付密码</string>
 </resources>
