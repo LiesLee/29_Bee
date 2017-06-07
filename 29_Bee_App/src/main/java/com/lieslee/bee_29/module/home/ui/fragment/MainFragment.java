@@ -11,6 +11,9 @@ import com.common.base.ui.BaseFragment;
 import com.common.base.ui.BaseView;
 import com.lieslee.bee_29.R;
 import com.lieslee.bee_29.module.common.ui.activity.MainActivity;
+import com.lieslee.bee_29.module.home.ui.activity.BankCardAcitvity;
+import com.lieslee.bee_29.module.home.ui.activity.NewsActivity;
+import com.lieslee.bee_29.module.home.ui.activity.QuestionActivity;
 import com.lieslee.bee_29.module.home.ui.activity.WalletActivity;
 import com.lieslee.bee_29.module.labour.ui.activity.BeeDetailActivity;
 import com.views.MarqueeTextView;
@@ -98,14 +101,17 @@ public class MainFragment extends BaseFragment<BasePresenterImpl> implements Bas
 
                 break;
             case R.id.ll_news :
-
+                Intent newsIntent = new Intent(baseActivity, NewsActivity.class);
+                startActivity(newsIntent);
                 break;
             case R.id.ll_bankcard :
-
+                Intent bankcardIntent = new Intent(baseActivity, BankCardAcitvity.class);
+                startActivity(bankcardIntent);
                 break;
 
             case R.id.ll_question :
-
+                Intent questionIntent = new Intent(baseActivity, QuestionActivity.class);
+                startActivity(questionIntent);
                 break;
 
             default:

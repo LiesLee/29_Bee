@@ -6,4 +6,9 @@
     <string name="buy_bee">养蜂啦</string>
     <string name="my_wallet">我的钱包</string>
     <string name="withdraw">提现</string>
+    <string name="transaction_record">交易记录</string>
+    <string name="bee_news">蜜蜂资讯</string>
+    <string name="add_bank_card">银行卡信息</string>
+    <string name="bank_card">银行卡</string>
+    <string name="question">常见问题</string>
 </resources>

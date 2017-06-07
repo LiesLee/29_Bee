@@ -49,6 +49,12 @@
         <activity android:name=".module.labour.ui.activity.BeeDetailActivity" android:screenOrientation="portrait"/>
         <activity android:name=".module.home.ui.activity.WalletActivity" android:screenOrientation="portrait"/>
         <activity android:name=".module.home.ui.activity.WithdrawActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".module.home.ui.activity.TransactionRecordActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".module.home.ui.activity.NewsActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".module.home.ui.activity.ContentActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".module.home.ui.activity.AddBankCardActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".module.home.ui.activity.BankCardAcitvity" android:screenOrientation="portrait"/>
+        <activity android:name=".module.home.ui.activity.QuestionActivity" android:screenOrientation="portrait"/>
 
 
         <!--======================================== 微信支付====================================================-->

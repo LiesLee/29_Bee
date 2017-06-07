@@ -46,7 +46,8 @@ public class WalletActivity extends BaseActivity implements BaseView {
                 break;
 
             case R.id.bts_withdrawals_record :
-
+                Intent recordIntent = new Intent(baseActivity, TransactionRecordActivity.class);
+                startActivity(recordIntent);
                 break;
 
             default:

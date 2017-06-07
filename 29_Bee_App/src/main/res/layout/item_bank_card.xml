@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingLeft="15dp"
+    android:paddingTop="15dp"
+    android:paddingRight="15dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cv_card_layout"
+        android:layout_width="match_parent"
+        android:layout_height="134dp"
+        app:cardBackgroundColor="@color/red"
+        app:cardCornerRadius="5dp">
+
+        <RelativeLayout
+            android:paddingLeft="20dp"
+            android:paddingTop="20dp"
+            android:paddingRight="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.views.CircleImageView
+                android:id="@+id/civ_bank"
+                android:layout_width="35dp"
+                android:layout_height="35dp" />
+
+            <TextView
+                android:id="@+id/tv_bank_name"
+                android:layout_toRightOf="@+id/civ_bank"
+                android:layout_marginLeft="10dp"
+                android:maxLines="1"
+                android:text="中国邮政储蓄银行"
+                android:textSize="18dp"
+                android:ellipsize="end"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tv_card_type"
+                android:layout_below="@+id/tv_bank_name"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@+id/civ_bank"
+                android:layout_marginLeft="10dp"
+                android:maxLines="1"
+                android:text="储蓄卡"
+                android:textSize="18dp"
+                android:ellipsize="end"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+            <TextView
+                android:id="@+id/tv_card_number"
+                android:layout_below="@+id/tv_card_type"
+                android:layout_marginTop="20dp"
+                android:layout_toRightOf="@+id/civ_bank"
+                android:layout_marginLeft="10dp"
+                android:maxLines="1"
+                android:text="888888888888888888888888"
+                android:textSize="18dp"
+                android:ellipsize="end"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+        </RelativeLayout>
+
+
+
+    </android.support.v7.widget.CardView>
+</RelativeLayout>
