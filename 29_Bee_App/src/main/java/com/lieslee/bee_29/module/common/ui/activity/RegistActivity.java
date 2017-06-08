@@ -13,6 +13,9 @@ import com.common.annotation.ActivityFragmentInject;
 import com.common.base.ui.BaseActivity;
 import com.common.base.ui.BaseView;
 import com.lieslee.bee_29.R;
+import com.lieslee.bee_29.bean.common.SmsCodeTestResponse;
+import com.lieslee.bee_29.module.common.persenter.RegistPresenter;
+import com.lieslee.bee_29.module.common.view.RegistView;
 import com.lieslee.bee_29.utils.UIHelper;
 
 import java.util.Timer;
@@ -24,7 +27,7 @@ import butterknife.Bind;
  * Created by LiesLee on 17/6/7.
  */
 @ActivityFragmentInject(contentViewId = R.layout.act_regist, toolbarTitle = R.string.regist)
-public class RegistActivity extends BaseActivity implements BaseView {
+public class RegistActivity extends BaseActivity<RegistPresenter> implements RegistView {
 
 
     @Bind(R.id.et_phone)
@@ -46,6 +49,7 @@ public class RegistActivity extends BaseActivity implements BaseView {
 
     @Override
     protected void initView() {
+        mPresenter = new RegistPresenter(this);
         tv_finish.setOnClickListener(this);
         tv_get_verification_code.setOnClickListener(this);
     }
@@ -60,16 +64,36 @@ public class RegistActivity extends BaseActivity implements BaseView {
         switch (v.getId()) {
             case R.id.tv_get_verification_code:
                 startTimerTask();
-                //mPresenter.get_code(CustomerAppcation.getInstance().getUser().getMobile_encode());
+                if(checkPhone()){
+                    mPresenter.getSmsCode(phone, 1, 0);
+                }
                 break;
             case R.id.tv_finish:
                 if(checkPhone()&&check()){
-
+                    mPresenter.register(verification_code, phone, password, newPass);
                 }
                 break;
 
             default:
                 break;
+        }
+    }
+
+    @Override
+    public void registSuccess() {
+        toast("注册成功，请登录");
+        finish();
+    }
+
+    @Override
+    public void getSmsCodeError() {
+        cancelTimeText();
+    }
+
+    @Override
+    public void testSmsCode(SmsCodeTestResponse data) {
+        if(data!=null){
+            et_verification_code.setText(data.getSms_code());
         }
     }
 
@@ -132,6 +156,8 @@ public class RegistActivity extends BaseActivity implements BaseView {
         mTask = new CodeTimerTask();
         mTimer.schedule(mTask, 0, 1000);// 延时0s后执行，1s执行一次
     }
+
+
 
 
     /**

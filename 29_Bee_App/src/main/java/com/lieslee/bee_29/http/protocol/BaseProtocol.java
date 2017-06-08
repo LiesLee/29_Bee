@@ -91,7 +91,7 @@ public class BaseProtocol {
             hashMap.put("system_version",Build.VERSION.RELEASE);
             hashMap.put("device_id", Util.getDeviceId());
             hashMap.put("utm_medium", "android");
-            hashMap.put("utm_source", "vmApp");
+            hashMap.put("utm_source", "teeApp");
 
 
             if(!hashMap.containsKey("api_ver")){

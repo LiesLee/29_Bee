@@ -5,9 +5,11 @@ import android.app.ActivityManager;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.os.Build;
+
 import com.socks.library.KLog;
 
 import java.lang.reflect.Method;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 /**
@@ -56,6 +58,32 @@ public class ShiHuiActivityManager {
         while (acts.size() != 0) {
             Activity act = acts.poll();
             act.finish();
+        }
+    }
+
+    public void cleanActivity(Activity exceptActivity) {
+        if(acts != null && acts.size() > 0){
+            Iterator<Activity> it = acts.iterator();
+            while (it.hasNext()){
+                Activity activity = it.next();
+                if(activity != exceptActivity && activity != null){
+                    it.remove();
+                    activity.finish();
+                    activity = null;
+                }
+            }
+        }
+    }
+
+    public void finishActivityType(Class<?> cls){
+        Iterator<Activity> it = acts.iterator();
+        while (it.hasNext()){
+            Activity activity = it.next();
+            if(activity != null && activity.getClass().equals(cls)){
+                it.remove();
+                activity.finish();
+                activity = null;
+            }
         }
     }
 

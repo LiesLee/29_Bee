@@ -38,7 +38,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".module.common.ui.activity.MainActivity">
+        <activity android:name=".module.common.ui.activity.LogoActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -59,6 +59,7 @@
         <activity android:name=".module.common.ui.activity.RegistActivity" android:screenOrientation="portrait"/>
         <activity android:name=".module.common.ui.activity.ForgotPasswordActivity" android:screenOrientation="portrait"/>
         <activity android:name=".module.common.ui.activity.ModifyPayPasswordActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".module.common.ui.activity.MainActivity" android:screenOrientation="portrait"/>
 
 
         <!--======================================== 微信支付====================================================-->

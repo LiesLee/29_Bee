@@ -6,11 +6,15 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.common.ShiHuiActivityManager;
 import com.common.annotation.ActivityFragmentInject;
 import com.common.base.ui.BaseActivity;
 import com.common.base.ui.BaseView;
 import com.lai.library.ButtonStyle;
 import com.lieslee.bee_29.R;
+import com.lieslee.bee_29.bean.common.User;
+import com.lieslee.bee_29.module.common.persenter.LoginPresenter;
+import com.lieslee.bee_29.module.common.view.UserView;
 import com.lieslee.bee_29.utils.UIHelper;
 
 import butterknife.Bind;
@@ -19,7 +23,7 @@ import butterknife.Bind;
  * Created by LiesLee on 17/6/7.
  */
 @ActivityFragmentInject(contentViewId = R.layout.act_login)
-public class LoginActivity extends BaseActivity implements BaseView {
+public class LoginActivity extends BaseActivity<LoginPresenter> implements UserView {
 
 
     @Bind(R.id.et_phone)
@@ -41,6 +45,7 @@ public class LoginActivity extends BaseActivity implements BaseView {
 
     @Override
     protected void initView() {
+        mPresenter = new LoginPresenter(this);
         bts_login.setOnClickListener(this);
         tv_regist.setOnClickListener(this);
         tv_forget_pass.setOnClickListener(this);
@@ -57,7 +62,7 @@ public class LoginActivity extends BaseActivity implements BaseView {
 
             case R.id.bts_login:
                 if(check()){
-                    //mPresenter.login(phone, password);
+                    mPresenter.login(phone, password);
                 }
 
                 break;
@@ -93,5 +98,13 @@ public class LoginActivity extends BaseActivity implements BaseView {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public void getUserSuccess(User data) {
+        toast("登录成功");
+        ShiHuiActivityManager.getInstance().cleanActivity(this);
+        startActivity(new Intent(baseActivity, MainActivity.class));
+        finish();
     }
 }

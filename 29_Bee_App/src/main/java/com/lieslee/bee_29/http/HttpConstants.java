@@ -53,8 +53,8 @@ public class HttpConstants {
      */
     public static String getCustomerBaseUrl() {
         return BuildConfig.DEBUG ?
-                "http://120.77.157.69/" :
-                "http://120.77.157.69/";
+                "http://116.62.129.169/app/" :
+                "http://116.62.129.169/app/";
     }
 
     public static String getSignKey() {
