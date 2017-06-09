@@ -13,6 +13,9 @@ import com.common.annotation.ActivityFragmentInject;
 import com.common.base.ui.BaseActivity;
 import com.common.base.ui.BaseView;
 import com.lieslee.bee_29.R;
+import com.lieslee.bee_29.bean.common.SmsCodeTestResponse;
+import com.lieslee.bee_29.module.common.persenter.ForgotPasswordPresenter;
+import com.lieslee.bee_29.module.common.view.ForgotPasswordView;
 import com.lieslee.bee_29.utils.UIHelper;
 
 import java.util.Timer;
@@ -25,7 +28,7 @@ import butterknife.Bind;
  * Email: LiesLee@foxmail.com
  */
 @ActivityFragmentInject(contentViewId = R.layout.act_forgot_password, toolbarTitle = R.string.forgot_password)
-public class ForgotPasswordActivity extends BaseActivity implements BaseView {
+public class ForgotPasswordActivity extends BaseActivity<ForgotPasswordPresenter> implements ForgotPasswordView {
 
 
     @Bind(R.id.et_phone)
@@ -69,8 +72,11 @@ public class ForgotPasswordActivity extends BaseActivity implements BaseView {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_get_verification_code:
-                startTimerTask();
-                //mPresenter.get_code(CustomerAppcation.getInstance().getUser().getMobile_encode());
+                if(type == 0 && checkPhone()){
+                    startTimerTask();
+                    mPresenter.getSmsCode(phone, 2, 0);
+                }
+
                 break;
             case R.id.tv_finish:
                 if(checkPhone()&&check()){
@@ -136,6 +142,8 @@ public class ForgotPasswordActivity extends BaseActivity implements BaseView {
         mTask = new CodeTimerTask();
         mTimer.schedule(mTask, 0, 1000);// 延时0s后执行，1s执行一次
     }
+
+
 
 
     /**
@@ -204,4 +212,18 @@ public class ForgotPasswordActivity extends BaseActivity implements BaseView {
         return result;
     }
 
+    @Override
+    public void modifySuccess() {
+
+    }
+
+    @Override
+    public void getSmsCodeError() {
+
+    }
+
+    @Override
+    public void testSmsCode(SmsCodeTestResponse data) {
+
+    }
 }

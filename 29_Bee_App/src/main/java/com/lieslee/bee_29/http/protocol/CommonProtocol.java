@@ -20,6 +20,20 @@ import rx.schedulers.Schedulers;
  */
 public class CommonProtocol extends BaseProtocol {
 
+
+    /**
+     * forgotpassword
+     * @return
+     */
+    public static Observable<HttpResult<String>> forgetLoginPwd(boolean isForgot, String sms_code,String mobile, String password){
+        Map<String, Object> params = new HashMap<>();
+        params.put("mobile", mobile);
+        params.put("sms_code", sms_code);
+        params.put("password", MD5Util.MD5Encode(password, "utf-8"));
+        return RetrofitManager.getInstance(HostType.USER_HOST).getCommonService()
+                .commonString(createPatams(params, isForgot ? "forgetLoginPwd" : "resetLoginPwd"));
+    }
+
     /**
      * register
      * @return
