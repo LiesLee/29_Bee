@@ -6,9 +6,11 @@ import android.widget.TextView;
 
 import com.common.annotation.ActivityFragmentInject;
 import com.common.base.ui.BaseActivity;
-import com.common.base.ui.BaseView;
 import com.lai.library.ButtonStyle;
 import com.lieslee.bee_29.R;
+import com.lieslee.bee_29.bean.home.WalletResponse;
+import com.lieslee.bee_29.module.home.presenter.WalletPresenter;
+import com.lieslee.bee_29.module.home.view.WalletView;
 
 import butterknife.Bind;
 
@@ -17,7 +19,7 @@ import butterknife.Bind;
  * Email: LiesLee@foxmail.com
  */
 @ActivityFragmentInject(contentViewId = R.layout.act_wallet, toolbarTitle = R.string.my_wallet)
-public class WalletActivity extends BaseActivity implements BaseView {
+public class WalletActivity extends BaseActivity<WalletPresenter> implements WalletView {
 
     @Bind(R.id.tv_balance)
     TextView tv_balance;
@@ -28,6 +30,7 @@ public class WalletActivity extends BaseActivity implements BaseView {
 
     @Override
     protected void initView() {
+        mPresenter = new WalletPresenter(this);
         bts_withdraw.setOnClickListener(this);
         bts_withdrawals_record.setOnClickListener(this);
     }
@@ -35,6 +38,12 @@ public class WalletActivity extends BaseActivity implements BaseView {
     @Override
     public void initData() {
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mPresenter.getWallet();
     }
 
     @Override
@@ -53,5 +62,10 @@ public class WalletActivity extends BaseActivity implements BaseView {
             default:
                 break;
         }
+    }
+
+    @Override
+    public void getWalletSuccess(WalletResponse data) {
+        tv_balance.setText(data.getUser_wallet().getMoney());
     }
 }
