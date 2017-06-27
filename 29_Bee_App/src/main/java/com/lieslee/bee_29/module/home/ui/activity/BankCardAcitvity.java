@@ -10,11 +10,14 @@ import android.widget.TextView;
 import com.common.annotation.ActivityFragmentInject;
 import com.common.base.ui.BaseActivity;
 import com.lieslee.bee_29.R;
+import com.lieslee.bee_29.bean.home.BankcardListResponse;
 import com.lieslee.bee_29.common.Constant;
 import com.lieslee.bee_29.module.home.presenter.BankCardPresenter;
 import com.lieslee.bee_29.module.home.ui.adapter.BankCardAdapter;
 import com.lieslee.bee_29.module.home.view.BankCardView;
 import com.views.util.RefreshUtil;
+
+import java.io.Serializable;
 
 import butterknife.Bind;
 import in.srain.cube.views.ptr.PtrClassicFrameLayout;
@@ -38,6 +41,7 @@ public class BankCardAcitvity extends BaseActivity<BankCardPresenter> implements
     TextView tv_add_bankcard;
     BankCardAdapter mAdapter;
     private LinearLayoutManager mLinearLayoutManager;
+    private BankcardListResponse data;
 
     //BankCardResponse data;
 
@@ -49,7 +53,7 @@ public class BankCardAcitvity extends BaseActivity<BankCardPresenter> implements
         RefreshUtil.init(baseActivity, store_house_ptr_frame, new RefreshUtil.PtrRefreshListener() {
             @Override
             public void OnRefresh(final PtrFrameLayout frame) {
-                mPresenter.loadBankCardList();
+                mPresenter.loadBankCardList(1);
             }
         });
 
@@ -69,9 +73,10 @@ public class BankCardAcitvity extends BaseActivity<BankCardPresenter> implements
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_add_bankcard :
-                //if(this.data == null)break;
+                if(this.data == null)break;
                 Intent intent = new Intent(this, AddBankCardActivity.class);
                 intent.putExtra("showType", 0);
+                intent.putExtra("type_list", (Serializable) data.getBank_type());
                 startActivityForResult(intent, 1);
                 break;
 
@@ -79,24 +84,24 @@ public class BankCardAcitvity extends BaseActivity<BankCardPresenter> implements
                 break;
         }
     }
-//
-//    @Override
-//    public void loadBankCardListDone(BankCardResponse data) {
-//        this.data = data;
-//        if(this.data != null && data.getBankcard_lists() != null && data.getBankcard_lists().size() > 0){
-//            mAdapter.setData(data.getBankcard_lists());
-//            ll_no_bankcard.setVisibility(View.GONE);
-//        }else{
-//            mAdapter.setData(null);
-//            ll_no_bankcard.setVisibility(View.VISIBLE);
-//        }
-//    }
+
+    @Override
+    public void loadBankCardListDone(BankcardListResponse data) {
+        this.data = data;
+        if(this.data != null && data.getBank_card() != null && data.getBank_card().getLists()!=null && data.getBank_card().getLists().size() > 0){
+            mAdapter.setData(data.getBank_card().getLists());
+            ll_no_bankcard.setVisibility(View.GONE);
+        }else{
+            mAdapter.setData(null);
+            ll_no_bankcard.setVisibility(View.VISIBLE);
+        }
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode == RESULT_OK){
-            mPresenter.loadBankCardList();
+            mPresenter.loadBankCardList(1);
         }
     }
 

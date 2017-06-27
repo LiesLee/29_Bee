@@ -7,4 +7,6 @@ import com.common.base.ui.BaseView;
  */
 
 public interface AddBankCardView extends BaseView {
+    void addBankCardGone();
+    void deleteBankCardGone();
 }

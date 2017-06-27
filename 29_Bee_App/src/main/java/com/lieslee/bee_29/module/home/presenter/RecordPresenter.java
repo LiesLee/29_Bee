@@ -1,25 +1,26 @@
 package com.lieslee.bee_29.module.home.presenter;
 
-
 import com.common.base.presenter.BasePresenterImpl;
 import com.common.callback.RequestCallback;
-import com.lieslee.bee_29.bean.home.BankcardListResponse;
+import com.lieslee.bee_29.bean.home.WithdrawalsRecordResponse;
 import com.lieslee.bee_29.common.Constant;
 import com.lieslee.bee_29.http.HttpUtil;
 import com.lieslee.bee_29.http.protocol.HomeProtocol;
-import com.lieslee.bee_29.module.home.view.BankCardView;
+import com.lieslee.bee_29.module.home.view.RecordView;
 
 /**
- * Created by LiesLee on 16/11/3.
+ * Created by LiesLee on 2017/6/27.
+ * Email: LiesLee@foxmail.com
  */
-public class BankCardPresenter extends BasePresenterImpl<BankCardView> {
-    public BankCardPresenter(BankCardView view) {
+
+public class RecordPresenter extends BasePresenterImpl<RecordView> {
+
+    public RecordPresenter(RecordView view) {
         super(view);
     }
 
-    public void loadBankCardList(int page) {
-
-        HttpUtil.requestDefault(HomeProtocol.bankcardPage(page), mView, new RequestCallback<BankcardListResponse>() {
+    public void loadRecordList(int page){
+        HttpUtil.requestDefault(HomeProtocol.withdrawPage(page), mView, new RequestCallback<WithdrawalsRecordResponse>() {
             @Override
             public void beforeRequest() {
 
@@ -42,10 +43,9 @@ public class BankCardPresenter extends BasePresenterImpl<BankCardView> {
             }
 
             @Override
-            public void requestSuccess(BankcardListResponse data) {
-                mView.loadBankCardListDone(data);
+            public void requestSuccess(WithdrawalsRecordResponse data) {
+                mView.loadWithdrawalsRecordSuccessed(data);
             }
         });
-
     }
 }
