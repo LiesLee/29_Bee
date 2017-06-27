@@ -12,6 +12,7 @@ import com.common.base.ui.BaseView;
 import com.lieslee.bee_29.R;
 import com.lieslee.bee_29.module.common.ui.activity.MainActivity;
 import com.lieslee.bee_29.module.home.ui.activity.BankCardAcitvity;
+import com.lieslee.bee_29.module.home.ui.activity.MyBeeActivity;
 import com.lieslee.bee_29.module.home.ui.activity.NewsActivity;
 import com.lieslee.bee_29.module.home.ui.activity.QuestionActivity;
 import com.lieslee.bee_29.module.home.ui.activity.WalletActivity;
@@ -61,7 +62,6 @@ public class MainFragment extends BaseFragment<BasePresenterImpl> implements Bas
     MarqueeTextView mtv_notice;
 
 
-
     @Override
     protected void initView(View fragmentRootView) {
         ll_bee.setOnClickListener(this);
@@ -82,34 +82,34 @@ public class MainFragment extends BaseFragment<BasePresenterImpl> implements Bas
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.ll_bee :
+            case R.id.ll_bee:
                 Intent beeIntent = new Intent(baseActivity, BeeDetailActivity.class);
                 startActivity(beeIntent);
                 break;
 
-            case R.id.ll_notice :
+            case R.id.ll_notice:
 
                 break;
-            case R.id.ll_my_wallet :
+            case R.id.ll_my_wallet:
                 Intent walletIntent = new Intent(baseActivity, WalletActivity.class);
                 baseActivity.startActivity(walletIntent);
                 break;
-            case R.id.ll_buy_bee :
-                ((MainActivity)baseActivity).seleteFragment(1);
+            case R.id.ll_buy_bee:
+                ((MainActivity) baseActivity).seleteFragment(1);
                 break;
-            case R.id.ll_my_bee :
-
+            case R.id.ll_my_bee:
+                baseActivity.startActivity(new Intent(baseActivity, MyBeeActivity.class));
                 break;
-            case R.id.ll_news :
+            case R.id.ll_news:
                 Intent newsIntent = new Intent(baseActivity, NewsActivity.class);
                 startActivity(newsIntent);
                 break;
-            case R.id.ll_bankcard :
+            case R.id.ll_bankcard:
                 Intent bankcardIntent = new Intent(baseActivity, BankCardAcitvity.class);
                 startActivity(bankcardIntent);
                 break;
 
-            case R.id.ll_question :
+            case R.id.ll_question:
                 Intent questionIntent = new Intent(baseActivity, QuestionActivity.class);
                 startActivity(questionIntent);
                 break;

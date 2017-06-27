@@ -60,6 +60,7 @@
         <activity android:name=".module.common.ui.activity.ForgotPasswordActivity" android:screenOrientation="portrait"/>
         <activity android:name=".module.common.ui.activity.ModifyPayPasswordActivity" android:screenOrientation="portrait"/>
         <activity android:name=".module.common.ui.activity.MainActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".module.home.ui.activity.MyBeeActivity" android:screenOrientation="portrait"/>
 
 
         <!--======================================== 微信支付====================================================-->

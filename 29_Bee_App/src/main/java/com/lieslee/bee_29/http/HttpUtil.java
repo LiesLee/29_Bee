@@ -253,24 +253,6 @@ public class HttpUtil {
                         requestCallback.requestError(3, "数据回调后处理错误");
                     }
                     //登录状态失效
-                } else if (t.getStatus() == 202 || t.getStatus() == 207) {
-                    requestCallback.requestError(202, "由于您长时间未使用"+ BeeApplication.getInstance().getResources().getString(R.string.app_name) +", 登录状态失效, 请重新登录!");
-                    //登录状态异常（账号异常）跳登录
-//                    Token token = BeeApplication.getInstance().getUser().getApi_token();
-//                    BeeApplication.getInstance().setUser(null);
-//                    BeeApplication.getInstance().setToken(token);
-//                    Intent intent = new Intent(BeeApplication.getInstance(), LoginAct.class);
-//                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                    ShiHuiActivityManager.getInstance().cleanActivity();
-//                    intent.putExtra("isChangePass", true);
-//                    BeeApplication.getInstance().startActivity(intent);
-                } else if (t.getStatus() == 201) {
-                    //token状态失效，刷新token
-                    if(specialError != null){
-                        specialError.callback(t);
-                    }else{
-                        requestCallback.requestError(3, "数据回调后处理错误");
-                    }
                 } else {
                     //请求错误回调
                     requestCallback.requestError(t.getStatus(), t.getMsg());

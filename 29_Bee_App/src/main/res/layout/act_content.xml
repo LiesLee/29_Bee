@@ -2,54 +2,29 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:wheel="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <include layout="@layout/defaut_toolbar_white"/>
-
-    <ScrollView
-        android:scrollbars="none"
+    <RelativeLayout
+        android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp">
 
-        <LinearLayout
-            android:padding="15dp"
-            android:orientation="vertical"
+        <com.views.ProgressWebView
+            android:id="@+id/webview"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent" />
 
-            <TextView
-                android:id="@+id/tv_content_title"
-                android:maxLines="3"
-                android:ellipsize="end"
-                android:textSize="16dp"
-                android:text="加载中..."
-                android:textColor="@color/text_black"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+        <com.views.ProgressWheel
+            android:id="@+id/pw_loding"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerInParent="true"
+            android:visibility="gone"
+            wheel:matProg_barColor="@color/golden"
+            wheel:matProg_fillRadius="false"
+            wheel:matProg_linearProgress="true" />
 
-            <TextView
-                android:id="@+id/tv_time"
-                android:ellipsize="end"
-                android:textSize="13dp"
-                android:text="加载中..."
-                android:layout_marginTop="15dp"
-                android:textColor="@color/text_grey_light"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:id="@+id/tv_content"
-                android:ellipsize="end"
-                android:textSize="15dp"
-                android:text="加载中..."
-                android:layout_marginTop="15dp"
-                android:textColor="@color/text_grey_mild"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-        </LinearLayout>
-
-
-    </ScrollView>
-
+    </RelativeLayout>
 </LinearLayout>

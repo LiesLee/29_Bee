@@ -15,4 +15,5 @@
     <string name="regist">注册</string>
     <string name="forgot_password">忘记密码</string>
     <string name="pay_password">修改支付密码</string>
+    <string name="my_bee">我的蜜蜂</string>
 </resources>
