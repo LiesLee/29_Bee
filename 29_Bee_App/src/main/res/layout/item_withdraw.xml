@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="bottom"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/tv_1"
+        android:text="可提现余额"
+        android:textSize="14dp"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/grey"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tv_2"
+        android:text="￥100"
+        android:textSize="14dp"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:layout_weight="1"
+        android:textColor="@color/grey"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tv_3"
+        android:text="全部提现"
+        android:textSize="14dp"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/golden"
+        android:layout_width="wrap_content"
+        android:gravity="right|end"
+        android:paddingLeft="15dp"
+        android:paddingTop="15dp"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

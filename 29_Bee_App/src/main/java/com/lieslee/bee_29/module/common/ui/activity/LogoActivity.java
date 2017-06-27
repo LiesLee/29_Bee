@@ -37,13 +37,13 @@ public class LogoActivity extends BaseActivity<BasePresenterImpl> implements Bas
         Timer timer = new Timer();// 实例化Timer类
         timer.schedule(new TimerTask() {
             public void run() {
-                //if(BeeApplication.getInstance().isLogin()){
+                if(BeeApplication.getInstance().isLogin()){
                     Intent intent = new Intent(baseActivity, MainActivity.class);
                     startActivity(intent);
-//                }else{
-//                    Intent intent = new Intent(baseActivity, LoginActivity.class);
-//                    startActivity(intent);
-//                }
+                }else{
+                    Intent intent = new Intent(baseActivity, LoginActivity.class);
+                    startActivity(intent);
+                }
 
                 this.cancel();
             }

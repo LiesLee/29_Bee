@@ -63,8 +63,9 @@ public class RegistActivity extends BaseActivity<RegistPresenter> implements Reg
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_get_verification_code:
-                startTimerTask();
+
                 if(checkPhone()){
+                    startTimerTask();
                     mPresenter.getSmsCode(phone, 1, 0);
                 }
                 break;

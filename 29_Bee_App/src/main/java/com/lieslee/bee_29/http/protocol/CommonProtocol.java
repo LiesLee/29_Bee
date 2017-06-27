@@ -4,6 +4,7 @@ package com.lieslee.bee_29.http.protocol;
 import com.common.http.HostType;
 import com.common.http.HttpResult;
 import com.common.utils.MD5Util;
+import com.lieslee.bee_29.bean.common.CommonInfoResponse;
 import com.lieslee.bee_29.bean.common.SmsCodeTestResponse;
 import com.lieslee.bee_29.bean.common.User;
 import com.lieslee.bee_29.http.manager.RetrofitManager;
@@ -21,6 +22,20 @@ import rx.schedulers.Schedulers;
 public class CommonProtocol extends BaseProtocol {
 
 
+
+
+    /**
+     * forgotpassword
+     * @return
+     */
+    public static Observable<HttpResult<CommonInfoResponse>> infoView(int id){
+        Map<String, Object> params = new HashMap<>();
+        params.put("id", id);
+        return RetrofitManager.getInstance(HostType.USER_HOST).getCommonService()
+                .infoView(createPatams(params,"infoView"));
+    }
+
+
     /**
      * forgotpassword
      * @return
@@ -32,6 +47,19 @@ public class CommonProtocol extends BaseProtocol {
         params.put("password", MD5Util.MD5Encode(password, "utf-8"));
         return RetrofitManager.getInstance(HostType.USER_HOST).getCommonService()
                 .commonString(createPatams(params, isForgot ? "forgetLoginPwd" : "resetLoginPwd"));
+    }
+
+    /**
+     * forgetPayPwd
+     * @return
+     */
+    public static Observable<HttpResult<String>> forgetPayPwd(String sms_code,String mobile, String password){
+        Map<String, Object> params = new HashMap<>();
+        params.put("mobile", mobile);
+        params.put("sms_code", sms_code);
+        params.put("password", MD5Util.MD5Encode(password, "utf-8"));
+        return RetrofitManager.getInstance(HostType.USER_HOST).getCommonService()
+                .commonString(createPatams(params, "forgetPayPwd"));
     }
 
     /**

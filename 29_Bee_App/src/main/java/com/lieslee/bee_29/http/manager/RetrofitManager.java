@@ -11,6 +11,7 @@ import com.lieslee.bee_29.BuildConfig;
 import com.lieslee.bee_29.application.BeeApplication;
 import com.lieslee.bee_29.http.HttpConstants;
 import com.lieslee.bee_29.http.service.CommonService;
+import com.lieslee.bee_29.http.service.HomeService;
 import com.socks.library.KLog;
 
 import java.io.File;
@@ -54,6 +55,7 @@ public class RetrofitManager {
 
 
     private CommonService commonService;
+    private HomeService homeService;
 
     /*//设缓存有效期为两天
     private static final long CACHE_STALE_SEC = 60 * 60 * 24 * 2;
@@ -268,6 +270,13 @@ public class RetrofitManager {
             commonService = createRetrofit().create(CommonService.class);
         }
         return commonService;
+    }
+
+    public HomeService getHomeService() {
+        if(homeService == null){
+            homeService = createRetrofit().create(HomeService.class);
+        }
+        return homeService;
     }
 
 

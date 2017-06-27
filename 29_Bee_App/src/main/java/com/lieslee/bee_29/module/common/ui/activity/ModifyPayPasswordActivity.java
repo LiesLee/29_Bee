@@ -2,6 +2,7 @@ package com.lieslee.bee_29.module.common.ui.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
@@ -9,10 +10,14 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.common.ShiHuiActivityManager;
 import com.common.annotation.ActivityFragmentInject;
 import com.common.base.ui.BaseActivity;
-import com.common.base.ui.BaseView;
 import com.lieslee.bee_29.R;
+import com.lieslee.bee_29.application.BeeApplication;
+import com.lieslee.bee_29.bean.common.SmsCodeTestResponse;
+import com.lieslee.bee_29.module.common.persenter.ModifyPayPasswordPresenter;
+import com.lieslee.bee_29.module.common.view.ForgotPasswordView;
 import com.lieslee.bee_29.utils.UIHelper;
 
 import java.util.Timer;
@@ -25,7 +30,7 @@ import butterknife.Bind;
  * Email: LiesLee@foxmail.com
  */
 @ActivityFragmentInject(contentViewId = R.layout.act_pay_password, toolbarTitle = R.string.pay_password)
-public class ModifyPayPasswordActivity extends BaseActivity implements BaseView {
+public class ModifyPayPasswordActivity extends BaseActivity<ModifyPayPasswordPresenter> implements ForgotPasswordView {
 
     @Bind(R.id.et_phone)
     EditText et_phone;
@@ -43,8 +48,12 @@ public class ModifyPayPasswordActivity extends BaseActivity implements BaseView 
 
     @Override
     protected void initView() {
+        mPresenter = new ModifyPayPasswordPresenter(this);
         tv_finish.setOnClickListener(this);
         tv_get_verification_code.setOnClickListener(this);
+        et_phone.setEnabled(false);
+
+        et_phone.setText(BeeApplication.getInstance().getUser().getUser().getUser_mobile());
     }
 
     @Override
@@ -57,11 +66,11 @@ public class ModifyPayPasswordActivity extends BaseActivity implements BaseView 
         switch (v.getId()) {
             case R.id.tv_get_verification_code:
                 startTimerTask();
-                //mPresenter.get_code(CustomerAppcation.getInstance().getUser().getMobile_encode());
+                mPresenter.getSmsCode(BeeApplication.getInstance().getUser().getUser().getUser_mobile_encrypt(), 4, 1);
                 break;
             case R.id.tv_finish:
-                if(checkPhone()&&check()){
-
+                if(check()){
+                    mPresenter.modifyPayPassword(verification_code, BeeApplication.getInstance().getUser().getUser().getUser_mobile_encrypt(), newPass);
                 }
                 break;
 
@@ -71,33 +80,12 @@ public class ModifyPayPasswordActivity extends BaseActivity implements BaseView 
     }
 
 
-    boolean checkPhone() {
-        phone = et_phone.getText().toString();
-        if (TextUtils.isEmpty(phone)) {
-            UIHelper.showShakeAnim(this, et_phone, "手机号码不能为空");
-            et_phone.requestFocus();
-            return false;
-        } else if (!UIHelper.phoneNumberValid(phone)) {
-            UIHelper.showShakeAnim(this, et_phone, "请输入正确手机号码");
-            et_phone.requestFocus();
-            return false;
-        }
-        return true;
-    }
 
     boolean check() {
         phone = et_phone.getText().toString();
         newPass = et_new_pass.getText().toString();
         verification_code = et_verification_code.getText().toString();
-        if (TextUtils.isEmpty(phone)) {
-            UIHelper.showShakeAnim(this, et_phone, "手机号码不能为空");
-            et_phone.requestFocus();
-            return false;
-        } else if (!UIHelper.phoneNumberValid(phone)) {
-            UIHelper.showShakeAnim(this, et_phone, "请输入正确手机号码");
-            et_phone.requestFocus();
-            return false;
-        } else if (TextUtils.isEmpty(verification_code)) {
+        if (TextUtils.isEmpty(verification_code)) {
             UIHelper.showShakeAnim(this, et_verification_code, "请输入您收到的短信验证码");
             et_verification_code.requestFocus();
             return false;
@@ -189,5 +177,22 @@ public class ModifyPayPasswordActivity extends BaseActivity implements BaseView 
         String format = context.getString(formatResId);
         String result = String.format(format, args);
         return result;
+    }
+
+
+    @Override
+    public void modifySuccess() {
+        toast("修改成功");
+        finish();
+    }
+
+    @Override
+    public void getSmsCodeError() {
+        cancelTimeText();
+    }
+
+    @Override
+    public void testSmsCode(SmsCodeTestResponse data) {
+        et_verification_code.setText(data.getSms_code());
     }
 }

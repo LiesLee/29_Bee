@@ -12,7 +12,6 @@ import com.lieslee.bee_29.application.BeeApplication;
 
 
 public class HttpConstants {
-    //http://static.test.vip-time.cn:83/app/test/a.xlsx
 
     /**
      * 返回成功
@@ -47,14 +46,13 @@ public class HttpConstants {
 
 
     /**
-     * 用户端域名
-     *
+     * 域名
      * @return
      */
     public static String getCustomerBaseUrl() {
         return BuildConfig.DEBUG ?
-                "http://116.62.129.169/app/" :
-                "http://116.62.129.169/app/";
+                "http://test.jsb-app.com/29mf/api.php/" :
+                "http://test.jsb-app.com/29mf/api.php/";
     }
 
     public static String getSignKey() {

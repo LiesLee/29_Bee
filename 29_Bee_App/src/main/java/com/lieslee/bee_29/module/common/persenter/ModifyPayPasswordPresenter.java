@@ -1,7 +1,6 @@
 package com.lieslee.bee_29.module.common.persenter;
 
 import com.common.base.presenter.BasePresenterImpl;
-import com.common.base.ui.BaseView;
 import com.common.callback.RequestCallback;
 import com.lieslee.bee_29.bean.common.SmsCodeTestResponse;
 import com.lieslee.bee_29.common.Constant;
@@ -10,12 +9,12 @@ import com.lieslee.bee_29.http.protocol.CommonProtocol;
 import com.lieslee.bee_29.module.common.view.ForgotPasswordView;
 
 /**
- * Created by LiesLee on 17/6/9.
+ * Created by LiesLee on 17/6/27.
  */
 
-public class ForgotPasswordPresenter extends BasePresenterImpl<ForgotPasswordView>{
+public class ModifyPayPasswordPresenter extends BasePresenterImpl<ForgotPasswordView>{
 
-    public ForgotPasswordPresenter(ForgotPasswordView view) {
+    public ModifyPayPasswordPresenter(ForgotPasswordView view) {
         super(view);
     }
 
@@ -51,8 +50,8 @@ public class ForgotPasswordPresenter extends BasePresenterImpl<ForgotPasswordVie
         });
     }
 
-    public void modifyPassword(boolean isForgot, String sms_code,String mobile, String password){
-        HttpUtil.requestDefault(CommonProtocol.forgetLoginPwd(isForgot, sms_code, mobile, password), mView, new RequestCallback<String>() {
+    public void modifyPayPassword(String sms_code,String mobile, String password){
+        HttpUtil.requestDefault(CommonProtocol.forgetPayPwd(sms_code, mobile, password), mView, new RequestCallback<String>() {
             @Override
             public void beforeRequest() {
                 mView.showProgress(Constant.PROGRESS_TYPE_DIALOG);
@@ -76,12 +75,14 @@ public class ForgotPasswordPresenter extends BasePresenterImpl<ForgotPasswordVie
             }
 
 
+
             @Override
             public void requestSuccess(String data) {
                 mView.modifySuccess();
             }
         });
     }
+
 
 
 

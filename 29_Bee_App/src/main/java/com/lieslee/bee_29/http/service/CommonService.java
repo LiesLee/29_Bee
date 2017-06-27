@@ -1,6 +1,7 @@
 package com.lieslee.bee_29.http.service;
 
 import com.common.http.HttpResult;
+import com.lieslee.bee_29.bean.common.CommonInfoResponse;
 import com.lieslee.bee_29.bean.common.SmsCodeTestResponse;
 import com.lieslee.bee_29.bean.common.User;
 
@@ -42,6 +43,15 @@ public interface CommonService {
     @FormUrlEncoded
     @POST("api.php")
     Observable<HttpResult<User>> login(@FieldMap Map<String, Object> params);
+
+    /**
+     * 刷新登录状态
+     * @param params
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api.php")
+    Observable<HttpResult<CommonInfoResponse>> infoView(@FieldMap Map<String, Object> params);
 
 
 }

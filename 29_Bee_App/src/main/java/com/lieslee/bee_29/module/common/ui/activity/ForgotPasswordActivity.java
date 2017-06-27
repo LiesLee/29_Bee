@@ -2,6 +2,7 @@ package com.lieslee.bee_29.module.common.ui.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
@@ -9,10 +10,12 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.common.ShiHuiActivityManager;
 import com.common.annotation.ActivityFragmentInject;
 import com.common.base.ui.BaseActivity;
 import com.common.base.ui.BaseView;
 import com.lieslee.bee_29.R;
+import com.lieslee.bee_29.application.BeeApplication;
 import com.lieslee.bee_29.bean.common.SmsCodeTestResponse;
 import com.lieslee.bee_29.module.common.persenter.ForgotPasswordPresenter;
 import com.lieslee.bee_29.module.common.view.ForgotPasswordView;
@@ -45,14 +48,15 @@ public class ForgotPasswordActivity extends BaseActivity<ForgotPasswordPresenter
     private String phone;
     private String password;
     private String verification_code;
-
+    /** 0忘记密码、1修改密码 */
     int type = 0;
     @Override
     protected void initView() {
-
+        mPresenter = new ForgotPasswordPresenter(this);
         type = getIntent().getIntExtra("type", 0);
         if(type == 1){
-            et_phone.setText("13888888881");
+            BeeApplication.getInstance().getUser().getUser().getUser_mobile();
+            et_phone.setText(BeeApplication.getInstance().getUser().getUser().getUser_mobile());
             et_phone.setEnabled(false);
             tv_title.setText("修改密码");
         }
@@ -72,16 +76,32 @@ public class ForgotPasswordActivity extends BaseActivity<ForgotPasswordPresenter
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_get_verification_code:
-                if(type == 0 && checkPhone()){
+                if(type == 0){
+                    if(checkPhone()){
+                        startTimerTask();
+                        mPresenter.getSmsCode(phone, 2, type);
+                    }
+
+                }
+
+                if(type == 1){
                     startTimerTask();
-                    mPresenter.getSmsCode(phone, 2, 0);
+                    mPresenter.getSmsCode(BeeApplication.getInstance().getUser().getUser().getUser_mobile_encrypt(), 3, type);
+
                 }
 
                 break;
             case R.id.tv_finish:
-                if(checkPhone()&&check()){
-
+                if(type == 0){
+                    if(checkPhone()&&check()){
+                        mPresenter.modifyPassword(type == 0, verification_code, type == 0 ? phone : BeeApplication.getInstance().getUser().getUser().getUser_mobile_encrypt(), password);
+                    }
+                }else{
+                    if(check()){
+                        mPresenter.modifyPassword(type == 0, verification_code, type == 0 ? phone : BeeApplication.getInstance().getUser().getUser().getUser_mobile_encrypt(), password);
+                    }
                 }
+
                 break;
 
             default:
@@ -112,7 +132,7 @@ public class ForgotPasswordActivity extends BaseActivity<ForgotPasswordPresenter
             UIHelper.showShakeAnim(this, et_phone, "手机号码不能为空");
             et_phone.requestFocus();
             return false;
-        } else if (!UIHelper.phoneNumberValid(phone)) {
+        } else if (!UIHelper.phoneNumberValid(phone) && type == 0) {
             UIHelper.showShakeAnim(this, et_phone, "请输入正确手机号码");
             et_phone.requestFocus();
             return false;
@@ -214,16 +234,20 @@ public class ForgotPasswordActivity extends BaseActivity<ForgotPasswordPresenter
 
     @Override
     public void modifySuccess() {
-
+        toast("修改成功, 请重新登录");
+        ShiHuiActivityManager.getInstance().cleanActivity(this);
+        startActivity(new Intent(baseActivity, LoginActivity.class));
+        BeeApplication.getInstance().setUser(null);
+        finish();
     }
 
     @Override
     public void getSmsCodeError() {
-
+        cancelTimeText();
     }
 
     @Override
     public void testSmsCode(SmsCodeTestResponse data) {
-
+        et_verification_code.setText(data.getSms_code());
     }
 }
