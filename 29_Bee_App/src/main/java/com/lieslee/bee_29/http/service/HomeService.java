@@ -7,6 +7,8 @@ import com.lieslee.bee_29.bean.home.TransactionRecordResponse;
 import com.lieslee.bee_29.bean.home.WalletResponse;
 import com.lieslee.bee_29.bean.home.WithdrawIndexResponse;
 import com.lieslee.bee_29.bean.home.WithdrawalsRecordResponse;
+import com.lieslee.bee_29.bean.labour.BeeDetailResponse;
+import com.lieslee.bee_29.bean.labour.BeeListResponse;
 import com.lieslee.bee_29.module.home.view.NewsListView;
 
 import java.util.Map;
@@ -22,6 +24,22 @@ import rx.Observable;
 
 public interface HomeService {
 
+    /**
+     * bee detail
+     * @param params
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api.php")
+    Observable<HttpResult<BeeDetailResponse>> projectView(@FieldMap Map<String, Object> params);
+    /**
+     * bee列表
+     * @param params
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api.php")
+    Observable<HttpResult<BeeListResponse>> projectPage(@FieldMap Map<String, Object> params);
     /**
      * news列表
      * @param params

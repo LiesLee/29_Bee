@@ -45,7 +45,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:button="@null"
-            android:text="今日拜访"
+            android:text="蜜蜂"
             android:textSize="10dp"
             android:drawableTop="@drawable/sele_rb_bee"
             android:checked="false"

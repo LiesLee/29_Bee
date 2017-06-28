@@ -11,6 +11,8 @@ import com.lieslee.bee_29.bean.home.TransactionRecordResponse;
 import com.lieslee.bee_29.bean.home.WalletResponse;
 import com.lieslee.bee_29.bean.home.WithdrawIndexResponse;
 import com.lieslee.bee_29.bean.home.WithdrawalsRecordResponse;
+import com.lieslee.bee_29.bean.labour.BeeDetailResponse;
+import com.lieslee.bee_29.bean.labour.BeeListResponse;
 import com.lieslee.bee_29.http.manager.RetrofitManager;
 
 import java.util.HashMap;
@@ -24,6 +26,30 @@ import rx.Observable;
 
 public class HomeProtocol extends BaseProtocol {
 
+
+    /**
+     * bee list
+     * @return
+     */
+    public static Observable<HttpResult<BeeDetailResponse>> projectView(String project_id){
+        Map<String, Object> params = new HashMap<>();
+        params.put("user_id", BeeApplication.getInstance().getUser().getUser().getUser_id());
+        params.put("project_id", project_id);
+        return RetrofitManager.getInstance(HostType.USER_HOST).getHomeService()
+                .projectView(createPatams(params,"projectView"));
+    }
+
+    /**
+     * bee list
+     * @return
+     */
+    public static Observable<HttpResult<BeeListResponse>> projectPage(int page){
+        Map<String, Object> params = new HashMap<>();
+        params.put("user_id", BeeApplication.getInstance().getUser().getUser().getUser_id());
+        params.put("page", page);
+        return RetrofitManager.getInstance(HostType.USER_HOST).getHomeService()
+                .projectPage(createPatams(params,"projectPage"));
+    }
 
     /**
      * question list
