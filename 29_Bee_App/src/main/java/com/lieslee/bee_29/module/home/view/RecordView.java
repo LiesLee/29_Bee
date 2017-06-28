@@ -1,6 +1,7 @@
 package com.lieslee.bee_29.module.home.view;
 
 import com.common.base.ui.BaseView;
+import com.lieslee.bee_29.bean.home.TransactionRecordResponse;
 import com.lieslee.bee_29.bean.home.WithdrawalsRecordResponse;
 
 /**
@@ -10,4 +11,5 @@ import com.lieslee.bee_29.bean.home.WithdrawalsRecordResponse;
 
 public interface RecordView extends BaseView {
     void loadWithdrawalsRecordSuccessed(WithdrawalsRecordResponse data);
+    void loadTransctionRecordSuccessed(TransactionRecordResponse data);
 }

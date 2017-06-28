@@ -36,6 +36,7 @@ public class ContentActivity extends BaseActivity<InfoPresenter> implements Info
 
     /** 5-关于29蜜蜂 6-联系我们 */
     private int type;
+    private String id;
 
 
     @Override
@@ -46,14 +47,27 @@ public class ContentActivity extends BaseActivity<InfoPresenter> implements Info
 
     @Override
     public void initData() {
-        mPresenter.getInfo(type);
+        if(type == 5 || type ==6){
+            mPresenter.getInfo(type);
+        }
+
+        if(type == 4){
+            mPresenter.getNewsInfo(id);
+        }
+        if(type == 3){
+            mPresenter.getHeplInfo(id);
+        }
     }
 
     @Override
     protected void initView() {
         mPresenter = new InfoPresenter(this);
         type = getIntent().getIntExtra("type", 0);
+        id = getIntent().getStringExtra("id");
         switch (type) {
+            case 4 :
+                tv_title.setText("资讯详情");
+                break;
             case 5 :
                 tv_title.setText("关于" + getString(R.string.app_name));
                 break;

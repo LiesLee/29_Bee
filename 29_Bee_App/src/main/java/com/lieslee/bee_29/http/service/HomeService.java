@@ -2,9 +2,12 @@ package com.lieslee.bee_29.http.service;
 
 import com.common.http.HttpResult;
 import com.lieslee.bee_29.bean.home.BankcardListResponse;
+import com.lieslee.bee_29.bean.home.NewsListResponse;
+import com.lieslee.bee_29.bean.home.TransactionRecordResponse;
 import com.lieslee.bee_29.bean.home.WalletResponse;
 import com.lieslee.bee_29.bean.home.WithdrawIndexResponse;
 import com.lieslee.bee_29.bean.home.WithdrawalsRecordResponse;
+import com.lieslee.bee_29.module.home.view.NewsListView;
 
 import java.util.Map;
 
@@ -19,6 +22,14 @@ import rx.Observable;
 
 public interface HomeService {
 
+    /**
+     * news列表
+     * @param params
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api.php")
+    Observable<HttpResult<NewsListResponse>> articlePage(@FieldMap Map<String, Object> params);
     /**
      * 银行卡列表
      * @param params
@@ -35,6 +46,14 @@ public interface HomeService {
     @FormUrlEncoded
     @POST("api.php")
     Observable<HttpResult<WithdrawalsRecordResponse>> withdrawPage(@FieldMap Map<String, Object> params);
+    /**
+     * 交易记录
+     * @param params
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api.php")
+    Observable<HttpResult<TransactionRecordResponse>> walletPage(@FieldMap Map<String, Object> params);
     /**
      * 钱包
      * @param params

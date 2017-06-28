@@ -51,8 +51,8 @@ public class HttpConstants {
      */
     public static String getCustomerBaseUrl() {
         return BuildConfig.DEBUG ?
-                "http://test.jsb-app.com/29mf/api.php/" :
-                "http://test.jsb-app.com/29mf/api.php/";
+                "http://test.jsb-app.com/29mf/" :
+                "http://test.jsb-app.com/29mf/";
     }
 
     public static String getSignKey() {

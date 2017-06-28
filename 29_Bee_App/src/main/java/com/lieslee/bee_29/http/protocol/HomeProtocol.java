@@ -4,7 +4,10 @@ import com.common.http.HostType;
 import com.common.http.HttpResult;
 import com.common.utils.MD5Util;
 import com.lieslee.bee_29.application.BeeApplication;
+import com.lieslee.bee_29.bean.common.CommonInfoResponse;
 import com.lieslee.bee_29.bean.home.BankcardListResponse;
+import com.lieslee.bee_29.bean.home.NewsListResponse;
+import com.lieslee.bee_29.bean.home.TransactionRecordResponse;
 import com.lieslee.bee_29.bean.home.WalletResponse;
 import com.lieslee.bee_29.bean.home.WithdrawIndexResponse;
 import com.lieslee.bee_29.bean.home.WithdrawalsRecordResponse;
@@ -21,6 +24,53 @@ import rx.Observable;
 
 public class HomeProtocol extends BaseProtocol {
 
+
+    /**
+     * question list
+     * @return
+     */
+    public static Observable<HttpResult<NewsListResponse>> helpPage(int page){
+        Map<String, Object> params = new HashMap<>();
+        params.put("user_id", BeeApplication.getInstance().getUser().getUser().getUser_id());
+        params.put("page", page);
+        return RetrofitManager.getInstance(HostType.USER_HOST).getHomeService()
+                .articlePage(createPatams(params,"helpPage"));
+    }
+
+    /**
+     * news info
+     * @return
+     */
+    public static Observable<HttpResult<CommonInfoResponse>> articleView(String id){
+        Map<String, Object> params = new HashMap<>();
+        params.put("user_id", BeeApplication.getInstance().getUser().getUser().getUser_id());
+        params.put("id", id);
+        return RetrofitManager.getInstance(HostType.USER_HOST).getCommonService()
+                .infoView(createPatams(params,"articleView"));
+    }
+
+    /**
+     * news info
+     * @return
+     */
+    public static Observable<HttpResult<CommonInfoResponse>> helpView(String id){
+        Map<String, Object> params = new HashMap<>();
+        params.put("user_id", BeeApplication.getInstance().getUser().getUser().getUser_id());
+        params.put("id", id);
+        return RetrofitManager.getInstance(HostType.USER_HOST).getCommonService()
+                .infoView(createPatams(params,"helpView"));
+    }
+    /**
+     * news列表
+     * @return
+     */
+    public static Observable<HttpResult<NewsListResponse>> articlePage(int page){
+        Map<String, Object> params = new HashMap<>();
+        params.put("user_id", BeeApplication.getInstance().getUser().getUser().getUser_id());
+        params.put("page", page);
+        return RetrofitManager.getInstance(HostType.USER_HOST).getHomeService()
+                .articlePage(createPatams(params,"articlePage"));
+    }
 
     /**
      * 银行卡列表
@@ -65,7 +115,7 @@ public class HomeProtocol extends BaseProtocol {
 
 
     /**
-     * 交易记录
+     * 提现记录
      * @return
      */
     public static Observable<HttpResult<WithdrawalsRecordResponse>> withdrawPage(int page){
@@ -74,6 +124,18 @@ public class HomeProtocol extends BaseProtocol {
         params.put("page", page);
         return RetrofitManager.getInstance(HostType.USER_HOST).getHomeService()
                 .withdrawPage(createPatams(params,"withdrawPage"));
+    }
+
+    /**
+     * 交易记录
+     * @return
+     */
+    public static Observable<HttpResult<TransactionRecordResponse>> walletPage(int page){
+        Map<String, Object> params = new HashMap<>();
+        params.put("user_id", BeeApplication.getInstance().getUser().getUser().getUser_id());
+        params.put("page", page);
+        return RetrofitManager.getInstance(HostType.USER_HOST).getHomeService()
+                .walletPage(createPatams(params,"walletPage"));
     }
 
     /**

@@ -9,6 +9,7 @@ import com.common.annotation.ActivityFragmentInject;
 import com.common.base.ui.BaseActivity;
 import com.common.base.ui.BaseView;
 import com.lieslee.bee_29.R;
+import com.lieslee.bee_29.bean.home.TransactionRecordResponse;
 import com.lieslee.bee_29.bean.home.WithdrawalsRecordResponse;
 import com.lieslee.bee_29.common.Constant;
 import com.lieslee.bee_29.module.home.presenter.RecordPresenter;
@@ -45,7 +46,7 @@ import in.srain.cube.views.ptr.PtrFrameLayout;
             @Override
             public void OnRefresh(final PtrFrameLayout frame) {
                 pageNumber = 1;
-                mPresenter.loadRecordList(pageNumber);
+                mPresenter.loadTransctionRecordList(pageNumber);
             }
         });
 
@@ -78,6 +79,12 @@ import in.srain.cube.views.ptr.PtrFrameLayout;
 
     @Override
     public void loadWithdrawalsRecordSuccessed(WithdrawalsRecordResponse data) {
+
+
+    }
+
+    @Override
+    public void loadTransctionRecordSuccessed(TransactionRecordResponse data) {
         if(pageNumber == 1){
             if(data != null)mAdapter.setData(data.getLists());
             if(mAdapter.getData().size() > 10){
@@ -100,6 +107,5 @@ import in.srain.cube.views.ptr.PtrFrameLayout;
                 mAdapter.addNewData(null);
             }
         }
-
     }
 }

@@ -2,26 +2,24 @@ package com.lieslee.bee_29.module.home.presenter;
 
 import com.common.base.presenter.BasePresenterImpl;
 import com.common.callback.RequestCallback;
-import com.lieslee.bee_29.bean.home.TransactionRecordResponse;
-import com.lieslee.bee_29.bean.home.WithdrawalsRecordResponse;
+import com.lieslee.bee_29.bean.home.NewsListResponse;
 import com.lieslee.bee_29.common.Constant;
 import com.lieslee.bee_29.http.HttpUtil;
 import com.lieslee.bee_29.http.protocol.HomeProtocol;
-import com.lieslee.bee_29.module.home.view.RecordView;
+import com.lieslee.bee_29.module.home.view.NewsListView;
 
 /**
- * Created by LiesLee on 2017/6/27.
- * Email: LiesLee@foxmail.com
+ * Created by LiesLee on 17/6/28.
  */
 
-public class RecordPresenter extends BasePresenterImpl<RecordView> {
+public class NewsListPresenter extends BasePresenterImpl<NewsListView> {
 
-    public RecordPresenter(RecordView view) {
+    public NewsListPresenter(NewsListView view) {
         super(view);
     }
 
-    public void loadRecordList(int page){
-        HttpUtil.requestDefault(HomeProtocol.withdrawPage(page), mView, new RequestCallback<WithdrawalsRecordResponse>() {
+    public void getNewsList(int page) {
+        HttpUtil.requestDefault(HomeProtocol.articlePage(page), mView, new RequestCallback<NewsListResponse>() {
             @Override
             public void beforeRequest() {
 
@@ -44,13 +42,14 @@ public class RecordPresenter extends BasePresenterImpl<RecordView> {
             }
 
             @Override
-            public void requestSuccess(WithdrawalsRecordResponse data) {
-                mView.loadWithdrawalsRecordSuccessed(data);
+            public void requestSuccess(NewsListResponse data) {
+                mView.getListDone(data);
             }
         });
     }
-    public void loadTransctionRecordList(int page){
-        HttpUtil.requestDefault(HomeProtocol.walletPage(page), mView, new RequestCallback<TransactionRecordResponse>() {
+
+    public void getQuestionList(int page) {
+        HttpUtil.requestDefault(HomeProtocol.helpPage(page), mView, new RequestCallback<NewsListResponse>() {
             @Override
             public void beforeRequest() {
 
@@ -73,9 +72,11 @@ public class RecordPresenter extends BasePresenterImpl<RecordView> {
             }
 
             @Override
-            public void requestSuccess(TransactionRecordResponse data) {
-                mView.loadTransctionRecordSuccessed(data);
+            public void requestSuccess(NewsListResponse data) {
+                mView.getListDone(data);
             }
         });
     }
+
+
 }
