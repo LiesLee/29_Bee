@@ -112,4 +112,35 @@ public class InfoPresenter extends BasePresenterImpl<InfoView> {
             }
         });
     }
+    public void getBulletinInfo(String id){
+        HttpUtil.requestDefault(HomeProtocol.bulletinView(id), mView, new RequestCallback<CommonInfoResponse>() {
+            @Override
+            public void beforeRequest() {
+                mView.showProgress(Constant.PROGRESS_TYPE_DIALOG);
+            }
+
+            @Override
+            public void requestError(int code, String msg) {
+                if (mView == null) return;
+                if (code == 0) {
+                    mView.toast("网络失败异常,请稍后再试");
+                } else {
+                    mView.toast(msg);
+                }
+                mView.hideProgress(Constant.PROGRESS_TYPE_DIALOG);
+            }
+
+            @Override
+            public void requestComplete() {
+                if(mView == null) return;
+                mView.hideProgress(Constant.PROGRESS_TYPE_DIALOG);
+            }
+
+
+            @Override
+            public void requestSuccess(CommonInfoResponse data) {
+                mView.getInfoSuccess(data);
+            }
+        });
+    }
 }

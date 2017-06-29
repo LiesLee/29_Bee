@@ -45,6 +45,8 @@ public class LogoActivity extends BaseActivity<BasePresenterImpl> implements Bas
                     startActivity(intent);
                 }
 
+                finish();
+
                 this.cancel();
             }
         }, 2000);// 这里百毫秒

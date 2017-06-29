@@ -57,6 +57,9 @@ public class ContentActivity extends BaseActivity<InfoPresenter> implements Info
         if(type == 3){
             mPresenter.getHeplInfo(id);
         }
+        if(type == 2){
+            mPresenter.getBulletinInfo(id);
+        }
     }
 
     @Override
@@ -65,6 +68,9 @@ public class ContentActivity extends BaseActivity<InfoPresenter> implements Info
         type = getIntent().getIntExtra("type", 0);
         id = getIntent().getStringExtra("id");
         switch (type) {
+            case 2 :
+                tv_title.setText("公告详情");
+                break;
             case 4 :
                 tv_title.setText("资讯详情");
                 break;

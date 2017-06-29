@@ -134,6 +134,17 @@ public class HomeProtocol extends BaseProtocol {
      * news info
      * @return
      */
+    public static Observable<HttpResult<CommonInfoResponse>> bulletinView(String id){
+        Map<String, Object> params = new HashMap<>();
+        params.put("user_id", BeeApplication.getInstance().getUser().getUser().getUser_id());
+        params.put("id", id);
+        return RetrofitManager.getInstance(HostType.USER_HOST).getCommonService()
+                .infoView(createPatams(params,"bulletinView"));
+    }
+    /**
+     * news info
+     * @return
+     */
     public static Observable<HttpResult<CommonInfoResponse>> helpView(String id){
         Map<String, Object> params = new HashMap<>();
         params.put("user_id", BeeApplication.getInstance().getUser().getUser().getUser_id());

@@ -101,7 +101,7 @@ public class MainFragment extends BaseFragment<HomeFragmentPresenter> implements
                 if (recomend == null) return;
                 Intent intent = new Intent(baseActivity, ContentActivity.class);
                 intent.putExtra("id", recomend.getId());
-                intent.putExtra("type", 4);
+                intent.putExtra("type", 2);
                 startActivity(intent);
                 break;
             case R.id.ll_my_wallet:
