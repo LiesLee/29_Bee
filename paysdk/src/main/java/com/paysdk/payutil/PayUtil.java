@@ -32,7 +32,7 @@ public class PayUtil {
      */
     public static void WXPay(Context context, PayReq payReq) {
         final IWXAPI msgApi = WXAPIFactory.createWXAPI(context, null);
-        msgApi.registerApp(context.getString(R.string.weixin_appkey));
+        msgApi.registerApp(payReq.appId);
 
 
         msgApi.sendReq(payReq);

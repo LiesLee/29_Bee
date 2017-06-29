@@ -2,13 +2,17 @@ package com.lieslee.bee_29.http.service;
 
 import com.common.http.HttpResult;
 import com.lieslee.bee_29.bean.home.BankcardListResponse;
+import com.lieslee.bee_29.bean.home.HomeResponse;
 import com.lieslee.bee_29.bean.home.NewsListResponse;
+import com.lieslee.bee_29.bean.home.OrderListResponse;
 import com.lieslee.bee_29.bean.home.TransactionRecordResponse;
 import com.lieslee.bee_29.bean.home.WalletResponse;
 import com.lieslee.bee_29.bean.home.WithdrawIndexResponse;
 import com.lieslee.bee_29.bean.home.WithdrawalsRecordResponse;
 import com.lieslee.bee_29.bean.labour.BeeDetailResponse;
 import com.lieslee.bee_29.bean.labour.BeeListResponse;
+import com.lieslee.bee_29.bean.labour.OrderComfirmResponse;
+import com.lieslee.bee_29.bean.labour.OrderPaymentResponse;
 import com.lieslee.bee_29.module.home.view.NewsListView;
 
 import java.util.Map;
@@ -24,6 +28,39 @@ import rx.Observable;
 
 public interface HomeService {
 
+    /**
+     * 订单列表
+     * @param params
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api.php")
+    Observable<HttpResult<OrderListResponse>> orderPage(@FieldMap Map<String, Object> params);
+
+    /**
+     * home
+     * @param params
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api.php")
+    Observable<HttpResult<HomeResponse>> appIndex(@FieldMap Map<String, Object> params);
+    /**
+     * 订单确认
+     * @param params
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api.php")
+    Observable<HttpResult<OrderPaymentResponse>> orderPayment(@FieldMap Map<String, Object> params);
+    /**
+     * 订单确认
+     * @param params
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api.php")
+    Observable<HttpResult<OrderComfirmResponse>> orderConfirm(@FieldMap Map<String, Object> params);
     /**
      * bee detail
      * @param params

@@ -10,8 +10,13 @@ import com.common.base.presenter.BasePresenterImpl;
 import com.common.base.ui.BaseFragment;
 import com.common.base.ui.BaseView;
 import com.lieslee.bee_29.R;
+import com.lieslee.bee_29.bean.home.HomeFragmentPresenter;
+import com.lieslee.bee_29.bean.home.HomeResponse;
+import com.lieslee.bee_29.bean.labour.Bee;
 import com.lieslee.bee_29.module.common.ui.activity.MainActivity;
+import com.lieslee.bee_29.module.common.view.HomeView;
 import com.lieslee.bee_29.module.home.ui.activity.BankCardAcitvity;
+import com.lieslee.bee_29.module.home.ui.activity.ContentActivity;
 import com.lieslee.bee_29.module.home.ui.activity.MyBeeActivity;
 import com.lieslee.bee_29.module.home.ui.activity.NewsActivity;
 import com.lieslee.bee_29.module.home.ui.activity.QuestionActivity;
@@ -26,7 +31,7 @@ import butterknife.Bind;
  * Email: LiesLee@foxmail.com
  */
 @ActivityFragmentInject(contentViewId = R.layout.fra_main)
-public class MainFragment extends BaseFragment<BasePresenterImpl> implements BaseView {
+public class MainFragment extends BaseFragment<HomeFragmentPresenter> implements HomeView {
     @Bind(R.id.ll_bee)
     LinearLayout ll_bee;
     @Bind(R.id.ll_notice)
@@ -60,10 +65,13 @@ public class MainFragment extends BaseFragment<BasePresenterImpl> implements Bas
 
     @Bind(R.id.mtv_notice)
     MarqueeTextView mtv_notice;
+    private Bee bee;
+    private HomeResponse.BulletinRecommend recomend;
 
 
     @Override
     protected void initView(View fragmentRootView) {
+        mPresenter = new HomeFragmentPresenter(this);
         ll_bee.setOnClickListener(this);
         ll_notice.setOnClickListener(this);
         ll_my_wallet.setOnClickListener(this);
@@ -76,19 +84,25 @@ public class MainFragment extends BaseFragment<BasePresenterImpl> implements Bas
 
     @Override
     public void initData() {
-
+        mPresenter.loadHomeData();
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.ll_bee:
+                if(bee == null) break;
                 Intent beeIntent = new Intent(baseActivity, BeeDetailActivity.class);
+                beeIntent.putExtra("id", bee.getProject_id());
                 startActivity(beeIntent);
                 break;
 
             case R.id.ll_notice:
-
+                if (recomend == null) return;
+                Intent intent = new Intent(baseActivity, ContentActivity.class);
+                intent.putExtra("id", recomend.getId());
+                intent.putExtra("type", 4);
+                startActivity(intent);
                 break;
             case R.id.ll_my_wallet:
                 Intent walletIntent = new Intent(baseActivity, WalletActivity.class);
@@ -120,4 +134,39 @@ public class MainFragment extends BaseFragment<BasePresenterImpl> implements Bas
     }
 
 
+    @Override
+    public void loadHomeDataSuccessed(HomeResponse data) {
+        if(data!=null){
+            if(data.getProject_recommend()!=null && data.getProject_recommend().size() >0){
+                bee = data.getProject_recommend().get(0);
+                if(bee != null){
+                    tv_no.setText(bee.getSimple_title());
+                    tv_bee_title.setText(bee.getTitle());
+                    tv_income.setText(bee.getIncome_percent()+"%");
+                    tv_price.setText(bee.getPrice()+"");
+                    tv_deadline.setText(bee.getIncome_cycle()+"");
+                    tv_tips.setText(bee.getStatus_title());
+                    ll_bee.setVisibility(View.VISIBLE);
+                }else{
+                    ll_bee.setVisibility(View.GONE);
+                }
+            }else{
+                ll_bee.setVisibility(View.GONE);
+            }
+
+            if(data.getBulletin_recommend()!=null && data.getBulletin_recommend().size() > 0){
+
+                recomend = data.getBulletin_recommend().get(0);
+                if(recomend!=null){
+                    ll_notice.setVisibility(View.VISIBLE);
+                    mtv_notice.setText(recomend.getTitle());
+                }else{
+                    ll_notice.setVisibility(View.GONE);
+                }
+
+            }else{
+                ll_notice.setVisibility(View.GONE);
+            }
+        }
+    }
 }

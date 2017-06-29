@@ -79,6 +79,7 @@ public class NewsActivity extends BaseActivity<NewsListPresenter> implements New
 
     @Override
     public void getListDone(NewsListResponse data) {
+
         if(pageNumber == 1){
             if(data != null)mAdapter.setData(data.getLists());
             if(mAdapter.getData().size() > 10){

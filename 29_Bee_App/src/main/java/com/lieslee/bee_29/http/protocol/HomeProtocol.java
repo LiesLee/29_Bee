@@ -6,13 +6,17 @@ import com.common.utils.MD5Util;
 import com.lieslee.bee_29.application.BeeApplication;
 import com.lieslee.bee_29.bean.common.CommonInfoResponse;
 import com.lieslee.bee_29.bean.home.BankcardListResponse;
+import com.lieslee.bee_29.bean.home.HomeResponse;
 import com.lieslee.bee_29.bean.home.NewsListResponse;
+import com.lieslee.bee_29.bean.home.OrderListResponse;
 import com.lieslee.bee_29.bean.home.TransactionRecordResponse;
 import com.lieslee.bee_29.bean.home.WalletResponse;
 import com.lieslee.bee_29.bean.home.WithdrawIndexResponse;
 import com.lieslee.bee_29.bean.home.WithdrawalsRecordResponse;
 import com.lieslee.bee_29.bean.labour.BeeDetailResponse;
 import com.lieslee.bee_29.bean.labour.BeeListResponse;
+import com.lieslee.bee_29.bean.labour.OrderComfirmResponse;
+import com.lieslee.bee_29.bean.labour.OrderPaymentResponse;
 import com.lieslee.bee_29.http.manager.RetrofitManager;
 
 import java.util.HashMap;
@@ -26,6 +30,57 @@ import rx.Observable;
 
 public class HomeProtocol extends BaseProtocol {
 
+
+    /**
+     * 订单列表
+     * @return
+     */
+    public static Observable<HttpResult<OrderListResponse>> orderPage(int page){
+        Map<String, Object> params = new HashMap<>();
+        params.put("user_id", BeeApplication.getInstance().getUser().getUser().getUser_id());
+        params.put("page", page);
+        return RetrofitManager.getInstance(HostType.USER_HOST).getHomeService()
+                .orderPage(createPatams(params,"orderPage"));
+    }
+
+    /**
+     * 首页
+     * @return
+     */
+    public static Observable<HttpResult<HomeResponse>> appIndex(){
+        Map<String, Object> params = new HashMap<>();
+        params.put("user_id", BeeApplication.getInstance().getUser().getUser().getUser_id());
+        return RetrofitManager.getInstance(HostType.USER_HOST).getHomeService()
+                .appIndex(createPatams(params,"appIndex"));
+    }
+
+    /**
+     * pay info
+     * @return
+     */
+    public static Observable<HttpResult<OrderPaymentResponse>> orderPayment(String project_id, int buy_num, int pay_type, String pay_password){
+        Map<String, Object> params = new HashMap<>();
+        params.put("user_id", BeeApplication.getInstance().getUser().getUser().getUser_id());
+        params.put("project_id", project_id);
+        params.put("buy_num", buy_num);
+        params.put("pay_type", pay_type);
+        params.put("pay_password", MD5Util.MD5Encode(pay_password,"utf-8"));
+        return RetrofitManager.getInstance(HostType.USER_HOST).getHomeService()
+                .orderPayment(createPatams(params,"orderPayment"));
+    }
+
+    /**
+     * bee list
+     * @return
+     */
+    public static Observable<HttpResult<OrderComfirmResponse>> orderConfirm(String project_id, int buy_num){
+        Map<String, Object> params = new HashMap<>();
+        params.put("user_id", BeeApplication.getInstance().getUser().getUser().getUser_id());
+        params.put("project_id", project_id);
+        params.put("buy_num", buy_num);
+        return RetrofitManager.getInstance(HostType.USER_HOST).getHomeService()
+                .orderConfirm(createPatams(params,"orderConfirm"));
+    }
 
     /**
      * bee list

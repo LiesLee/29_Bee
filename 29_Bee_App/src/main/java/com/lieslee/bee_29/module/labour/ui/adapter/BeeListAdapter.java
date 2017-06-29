@@ -7,6 +7,7 @@ import android.view.View;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.common.base.ui.BaseAdapter;
 import com.lieslee.bee_29.R;
+import com.lieslee.bee_29.bean.labour.Bee;
 import com.lieslee.bee_29.bean.labour.BeeListResponse;
 import com.lieslee.bee_29.module.labour.ui.activity.BeeDetailActivity;
 
@@ -17,13 +18,13 @@ import java.util.List;
  * Created by LiesLee on 17/6/6.
  */
 
-public class BeeListAdapter extends BaseAdapter<BeeListResponse.Bee> {
-    public BeeListAdapter(Context ctx, List<BeeListResponse.Bee> data) {
+public class BeeListAdapter extends BaseAdapter<Bee> {
+    public BeeListAdapter(Context ctx, List<Bee> data) {
         super(ctx, R.layout.item_buy_bee, null);
     }
 
     @Override
-    protected void convert(BaseViewHolder baseViewHolder, final BeeListResponse.Bee data) {
+    protected void convert(BaseViewHolder baseViewHolder, final Bee data) {
 
         baseViewHolder.setText(R.id.tv_no, data.getSimple_title());
         baseViewHolder.setText(R.id.tv_bee_title, data.getTitle());

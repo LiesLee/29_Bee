@@ -6,6 +6,7 @@ import android.support.v4.view.animation.LinearOutSlowInInterpolator;
 import android.text.TextUtils;
 import android.transition.TransitionSet;
 import android.view.Display;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
@@ -13,11 +14,13 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.common.base.ui.BaseActivity;
 import com.lieslee.bee_29.R;
 import com.lieslee.bee_29.bean.home.Bankcard;
+import com.lieslee.bee_29.bean.labour.OrderComfirmResponse;
 import com.views.wheel.adapters.ArrayWheelAdapter;
 import com.views.wheel.widget.OnWheelChangedListener;
 import com.views.wheel.widget.WheelView;
@@ -347,6 +350,116 @@ public class DialogHelper {
         }
         return dialog;
     }
+
+
+
+    /**
+     * 支付弹窗
+     *
+     * @param context
+     * @param count
+     * @param dialogOnclickSelectCallback
+     * @return
+     */
+    public static Dialog showPayTypeDialog(BaseActivity context, double count,List<OrderComfirmResponse.PayType> payTypes,
+                                           final DialogOnclickCallback dialogOnclickCallback, final DialogOnclickSelectCallback dialogOnclickSelectCallback) {
+        final Dialog dialog = new Dialog(context, R.style.custom_dialog);
+        dialog.setContentView(R.layout.pop_choose_pay_type);
+        TextView tv_count = (TextView) dialog.findViewById(R.id.tv_count);
+        TextView tv_ok = (TextView) dialog.findViewById(R.id.tv_ok);
+        RelativeLayout rl_weixin_type = (RelativeLayout) dialog.findViewById(R.id.rl_weixin_type);
+        RelativeLayout rl_alipay_type = (RelativeLayout) dialog.findViewById(R.id.rl_alipay_type);
+        RelativeLayout rl_balance_type = (RelativeLayout) dialog.findViewById(R.id.rl_balance_type);
+        final View v_weixin_type = dialog.findViewById(R.id.v_weixin_type);
+        final View v_alipay_type = dialog.findViewById(R.id.v_alipay_type);
+        final View v_bank_type = dialog.findViewById(R.id.v_bank_type);
+        if (count % 1 == 0) {
+            int discount = (int) count;
+            tv_count.setText("" + discount);
+        } else {
+            tv_count.setText("" + count);
+        }
+
+        final int[] payType = new int[1];
+
+        v_weixin_type.setSelected(true);
+        rl_weixin_type.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                payType[0] = 1;
+                v_weixin_type.setSelected(true);
+                v_alipay_type.setSelected(false);
+                v_bank_type.setSelected(false);
+            }
+        });
+        rl_alipay_type.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                payType[0] = 2;
+                v_weixin_type.setSelected(false);
+                v_bank_type.setSelected(false);
+                v_alipay_type.setSelected(true);
+            }
+        });
+        rl_balance_type.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                payType[0] = 4;
+                v_weixin_type.setSelected(false);
+                v_bank_type.setSelected(true);
+                v_alipay_type.setSelected(false);
+            }
+        });
+
+        tv_ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (dialogOnclickSelectCallback != null) {
+                    dialogOnclickSelectCallback.onButtonClick(dialog, payType[0]);
+                }
+                dialog.dismiss();
+            }
+        });
+
+        dialog.findViewById(R.id.iv_close).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (dialogOnclickCallback != null) {
+                    dialogOnclickCallback.onButtonClick(dialog);
+                }
+                dialog.dismiss();
+            }
+        });
+
+        rl_alipay_type.setVisibility(View.GONE);
+        rl_balance_type.setVisibility(View.GONE);
+        rl_weixin_type.setVisibility(View.GONE);
+
+        for(OrderComfirmResponse.PayType type : payTypes){
+            if(type.getPay_id() == 1){
+                rl_weixin_type.setVisibility(View.VISIBLE);
+            }
+            if(type.getPay_id() == 2){
+                rl_alipay_type.setVisibility(View.VISIBLE);
+            }
+            if(type.getPay_id() == 4){
+                rl_balance_type.setVisibility(View.VISIBLE);
+            }
+        }
+
+        Window dialogWindow = dialog.getWindow();
+        dialogWindow.setGravity(Gravity.BOTTOM);
+        WindowManager m = context.getWindowManager();
+        Display d = m.getDefaultDisplay();
+        WindowManager.LayoutParams p = dialogWindow.getAttributes();
+        //p.height = (int) (d.getHeight()*0.6);
+        p.width = (int) (d.getWidth() * 1);
+        dialogWindow.setAttributes(p);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
+        return dialog;
+    }
+
 
 
 }
